@@ -51,7 +51,13 @@ export default function FavoritesBookScreen() {
           <View key={book.id} style={styles.bookItem}>
             <Image source={{ uri: book.image }} style={styles.bookImage} />
             <View style={styles.bookInfo}>
-              <Text style={styles.bookTitle}>{book.title}</Text>
+              <Text
+                style={styles.bookTitle}
+                numberOfLines={1}
+                ellipsizeMode="tail"
+              >
+                {book.title}
+              </Text>
               <TouchableOpacity
                 style={styles.removeButton}
                 onPress={() => confirmRemoveFavorite(book.id)}
@@ -69,7 +75,6 @@ export default function FavoritesBookScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
     backgroundColor: '#f5f5f5',
     marginBottom: 20,
   },
@@ -78,15 +83,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
+    marginLeft: 15,
+    marginRight: 15,
   },
   bookItem: {
-    flexDirection: 'row',
     backgroundColor: '#fff',
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
     width: '48%',
     elevation: 2,
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   bookImage: {
     width: 80,
@@ -94,9 +102,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   bookInfo: {
-    marginLeft: 10,
-    flex: 1,
-    justifyContent: 'center',
+    marginTop: 10,
+    alignItems: 'center',
   },
   bookTitle: {
     fontSize: 16,
@@ -108,6 +115,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 5,
     alignItems: 'center',
+    marginTop: 10,
   },
   removeButtonText: {
     color: '#fff',

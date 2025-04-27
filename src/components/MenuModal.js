@@ -101,7 +101,10 @@ export default function MenuModal() {
                 styles.tab,
                 activeTab === 'home' && { backgroundColor: interpolateBg },
               ]}
-              onPress={() => handleTabChange('home')}
+              onPress={() => {
+                handleTabChange('home');
+                navigation.navigate('MainTabs', { screen: 'Home' });
+              }}
             >
               <Animated.Text
                 style={[
@@ -111,9 +114,6 @@ export default function MenuModal() {
                     backgroundColor: interpolateBg,
                   },
                 ]}
-                onPress={() => {
-                  navigation.navigate('MainTabs', { screen: 'Home' });
-                }}
               >
                 Trang chủ
               </Animated.Text>
@@ -128,6 +128,7 @@ export default function MenuModal() {
               ]}
               onPress={() => {
                 handleTabChange('favorites');
+                navigation.navigate('FavoritesBook');
               }}
             >
               <Animated.Text
@@ -138,9 +139,6 @@ export default function MenuModal() {
                     backgroundColor: interpolateBg,
                   },
                 ]}
-                onPress={() => {
-                  navigation.navigate('FavoritesBook');
-                }}
               >
                 Truyện đã yêu thích
               </Animated.Text>
@@ -153,7 +151,10 @@ export default function MenuModal() {
                   backgroundColor: interpolateBg,
                 },
               ]}
-              onPress={() => handleTabChange('manage-posts')}
+              onPress={() => {
+                handleTabChange('manage-posts');
+                navigation.navigate('ManagePosts');
+              }}
             >
               <Animated.Text
                 style={[
@@ -163,9 +164,6 @@ export default function MenuModal() {
                     backgroundColor: interpolateBg,
                   },
                 ]}
-                onPress={() => {
-                  navigation.navigate('ManagePosts');
-                }}
               >
                 Quản lý truyện
               </Animated.Text>
