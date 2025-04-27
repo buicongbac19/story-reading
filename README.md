@@ -73,16 +73,24 @@ javac -version
 
 - Create an emulator (Pixel 6, etc.) with API 36-ext17.
 
-### 4. 🚀 Getting Started
+### 4. Cấu hình ADB(Android Debug Bridge)
 
-#### 1. Clone the repository
+- Tìm đường dẫn đến thư mục **platform-tools**
+- Mở **Control Panel ➔ System and Security ➔ System ➔ Advanced system settings ➔ Environment Variables**
+- Trong phần **System variables**, tìm đến biến **Path**, bấm **Edit**
+- **Add New** ➔ paste đường dẫn tới **platform-tools**
+- Bấm **OK** để lưu
+
+### 5. 🚀 Getting Started
+
+#### 5.1. Clone the repository
 
 ```bash
 git clone https://github.com/buicongbac19/story-reading.git
 cd story-reading
 ```
 
-#### 2. Install dependencies
+#### 5.2. Install dependencies
 
 ```bash
 npm install
@@ -90,7 +98,7 @@ npm install
 yarn install
 ```
 
-#### 3. Start the Expo development server
+#### 5.3. Start the Expo development server
 
 ```bash
 npm start
@@ -98,7 +106,7 @@ npm start
 yarn start
 ```
 
-#### 4. Run the app
+#### 5.4. Run the app
 
 - On your device (Expo Go App):
   - Open Expo Go on your smartphone.
@@ -107,7 +115,7 @@ yarn start
   - Start your emulator with API 36-ext17.
   - In Expo Developer Tools, click Run on **Android device/emulator**.
 
-### 5. Project Structure
+### 5.5. Project Structure
 
 ```bash
 story-reading/
