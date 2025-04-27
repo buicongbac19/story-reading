@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,14 +7,11 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
-  StatusBar,
-  Platform,
   Modal,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { useMenuContext } from '../context/MenuProvider';
-import MenuModal from '../components/MenuModal';
+import HeaderWithMenuModal from '../components/HeaderWithMenuModal';
 
 const initialPosts = [
   {
@@ -74,16 +71,6 @@ export default function ManagePostsScreen() {
   const [menuVisible, setMenuVisible] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [deleteConfirmVisible, setDeleteConfirmVisible] = useState(false);
-  const [statusBarHeight, setStatusBarHeight] = useState(
-    StatusBar.currentHeight || 0,
-  );
-  const { openMenu, setOpenMenu, activeTab, setActiveTab } = useMenuContext();
-
-  useEffect(() => {
-    if (openMenu) setOpenMenu(false);
-    setStatusBarHeight(StatusBar.currentHeight || 0);
-    setActiveTab('manage-posts');
-  }, [activeTab]);
 
   const handleAddNewStory = () => {
     navigation.navigate('EditStory', { mode: 'create' });
@@ -133,21 +120,7 @@ export default function ManagePostsScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={[
-          styles.header,
-          { marginTop: Platform.OS === 'android' ? statusBarHeight : 0 },
-        ]}
-      >
-        <TouchableOpacity
-          style={styles.menuButton}
-          onPress={() => setOpenMenu(true)}
-        >
-          <Ionicons name="menu-outline" size={24} color="black" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Đăng bài</Text>
-        <View style={{ width: 24 }} />
-      </View>
+      <HeaderWithMenuModal tab="manage-posts" title="Quản lý truyện" />
 
       <View style={styles.addButtonContainer}>
         <TouchableOpacity style={styles.addButton} onPress={handleAddNewStory}>
@@ -240,7 +213,6 @@ export default function ManagePostsScreen() {
           </View>
         </View>
       </Modal>
-      <MenuModal />
     </SafeAreaView>
   );
 }
@@ -249,23 +221,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-    backgroundColor: '#fff',
-  },
-  menuButton: {
-    padding: 8,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '500',
   },
   addButtonContainer: {
     padding: 16,

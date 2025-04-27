@@ -124,13 +124,6 @@ export default function ChangePasswordScreen() {
             <Text style={styles.errorText}>{passwordError}</Text>
           ) : null}
         </View>
-
-        <TouchableOpacity
-          style={styles.forgotPasswordLink}
-          onPress={() => navigation.navigate('ForgotPassword')}
-        >
-          <Text style={styles.forgotPasswordText}>Quên mật khẩu?</Text>
-        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

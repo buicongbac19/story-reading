@@ -121,9 +121,6 @@ export default function ReviewsScreen() {
     <View style={styles.reviewItem}>
       <View style={styles.reviewHeader}>
         <Text style={styles.username}>{item.username}</Text>
-        <TouchableOpacity style={styles.moreButton}>
-          <Ionicons name="ellipsis-vertical" size={16} color="#666" />
-        </TouchableOpacity>
       </View>
       <View style={styles.ratingContainer}>
         {renderStars(item.rating)}

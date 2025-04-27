@@ -7,7 +7,6 @@ import { StatusBar, StyleSheet, LogBox } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { MenuProvider } from './src/context/MenuProvider';
-import { navigationRef } from './src/navigation/NavigationService';
 
 import LoginScreen from './src/screens/LoginScreen';
 import RegisterScreen from './src/screens/RegisterScreen';
@@ -16,7 +15,6 @@ import HomeScreen from './src/screens/HomeScreen';
 import BookDetailScreen from './src/screens/BookDetailScreen';
 import RateScreen from './src/screens/RateScreen';
 import ReviewsScreen from './src/screens/ReviewsScreen';
-import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import ChangePasswordScreen from './src/screens/ChangePasswordScreen';
 import EditProfileScreen from './src/screens/EditProfileScreen';
@@ -41,7 +39,6 @@ function MainStack({ setIsLoggedIn }) {
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
-      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
       <Stack.Screen name="FavoritesBook" component={FavoritesBookScreen} />
       <Stack.Screen name="ManagePosts" component={ManagePostsScreen} />
       <Stack.Screen name="EditStory" component={EditStoryScreen} />
@@ -95,7 +92,7 @@ export default function App() {
   return (
     <MenuProvider>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <NavigationContainer ref={navigationRef}>
+        <NavigationContainer>
           <StatusBar barStyle="dark-content" backgroundColor="#fff" />
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             {!isLoggedIn ? (
@@ -106,10 +103,6 @@ export default function App() {
                   initialParams={{ setIsLoggedIn }}
                 />
                 <Stack.Screen name="Register" component={RegisterScreen} />
-                <Stack.Screen
-                  name="ForgotPassword"
-                  component={ForgotPasswordScreen}
-                />
               </>
             ) : (
               <Stack.Screen

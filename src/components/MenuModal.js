@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useMenuContext } from '../context/MenuProvider';
-import { navigate } from '../navigation/NavigationService';
 
 const { width } = Dimensions.get('window');
 const SIDEBAR_WIDTH = width * 0.7;
@@ -113,7 +112,7 @@ export default function MenuModal() {
                   },
                 ]}
                 onPress={() => {
-                  navigate('MainTabs', { screen: 'Home' });
+                  navigation.navigate('MainTabs', { screen: 'Home' });
                 }}
               >
                 Trang chủ

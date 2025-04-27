@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,21 +6,10 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
-  Platform,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useMenuContext } from '../context/MenuProvider';
-import MenuModal from '../components/MenuModal';
+import HeaderWithMenuModal from '../components/HeaderWithMenuModal';
 
 export default function FavoritesBookScreen() {
-  const { openMenu, setOpenMenu, setActiveTab, activeTab } = useMenuContext();
-  const [statusBarHeight, setStatusBarHeight] = useState(0);
-
-  useEffect(() => {
-    if (openMenu) setOpenMenu(false);
-    setActiveTab('favorites');
-  }, [activeTab]);
-
   const [favorites, setFavorites] = useState([
     {
       id: 1,
@@ -53,25 +42,9 @@ export default function FavoritesBookScreen() {
     );
   };
 
-  const handleMenuPress = () => {
-    setOpenMenu(true);
-  };
-
   return (
     <View style={styles.container}>
-      <View
-        style={[
-          styles.header,
-          { marginTop: Platform.OS === 'android' ? statusBarHeight : 0 },
-        ]}
-      >
-        <TouchableOpacity style={styles.menuButton} onPress={handleMenuPress}>
-          <Ionicons name="menu-outline" size={24} color="black" />
-        </TouchableOpacity>
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>Truyện đã yêu thích</Text>
-        </View>
-      </View>
+      <HeaderWithMenuModal tab="favorites" title="Truyện đã yêu thích" />
 
       <View style={styles.bookContainer}>
         {favorites.map((book) => (
@@ -89,8 +62,6 @@ export default function FavoritesBookScreen() {
           </View>
         ))}
       </View>
-
-      <MenuModal />
     </View>
   );
 }
@@ -101,38 +72,6 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#f5f5f5',
     marginBottom: 20,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-    backgroundColor: '#fff',
-    position: 'relative',
-  },
-  menuButton: {
-    padding: 6,
-    zIndex: 2,
-  },
-  headerCenter: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    zIndex: 1,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '500',
   },
   bookContainer: {
     paddingTop: 30,

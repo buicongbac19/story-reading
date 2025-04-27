@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,14 +8,11 @@ import {
   ScrollView,
   FlatList,
   Dimensions,
-  StatusBar,
-  Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import MenuModal from '../components/MenuModal';
 
-import { useMenuContext } from '../context/MenuProvider';
+import HeaderWithMenuModal from '../components/HeaderWithMenuModal';
 
 const { width } = Dimensions.get('window');
 const ITEM_WIDTH = (width - 60) / 2;
@@ -59,21 +55,9 @@ export const booksData = [
 
 export default function HomeScreen() {
   const navigation = useNavigation();
-  const [statusBarHeight, setStatusBarHeight] = useState(0);
-  const { openMenu, setOpenMenu, activeTab, setActiveTab } = useMenuContext();
-
-  useEffect(() => {
-    setStatusBarHeight(StatusBar.currentHeight || 0);
-    if (openMenu) setOpenMenu(false);
-    setActiveTab('home');
-  }, [activeTab]);
 
   const handleBookPress = (book) => {
     navigation.navigate('BookDetail', { bookId: book.id });
-  };
-
-  const handleMenuPress = () => {
-    setOpenMenu(true);
   };
 
   const handleSearchPress = () => {
@@ -101,19 +85,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View
-        style={[
-          styles.header,
-          { marginTop: Platform.OS === 'android' ? statusBarHeight : 0 },
-        ]}
-      >
-        <TouchableOpacity style={styles.menuButton} onPress={handleMenuPress}>
-          <Ionicons name="menu-outline" size={24} color="black" />
-        </TouchableOpacity>
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>Menu</Text>
-        </View>
-      </View>
+      <HeaderWithMenuModal tab="home" title="Trang chủ" />
 
       <ScrollView style={styles.content}>
         <Image
@@ -140,8 +112,6 @@ export default function HomeScreen() {
       <TouchableOpacity style={styles.fab} onPress={handleSearchPress}>
         <Ionicons name="search" size={24} color="white" />
       </TouchableOpacity>
-
-      <MenuModal />
     </SafeAreaView>
   );
 }
@@ -150,33 +120,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-    backgroundColor: '#fff',
-    position: 'relative',
-  },
-  menuButton: {
-    padding: 6,
-    zIndex: 2,
-  },
-  headerCenter: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-    zIndex: 1,
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '500',
   },
   content: {
     flex: 1,

@@ -69,13 +69,6 @@ export default function LoginScreen({ navigation, route }) {
               </TouchableOpacity>
             </View>
 
-            <TouchableOpacity
-              style={styles.forgotPassword}
-              onPress={handleForgotPassword}
-            >
-              <Text style={styles.forgotPasswordText}>Quên mật khẩu?</Text>
-            </TouchableOpacity>
-
             <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
               <Text style={styles.loginButtonText}>Đăng nhập</Text>
             </TouchableOpacity>
