@@ -148,13 +148,6 @@ const styles = StyleSheet.create({
     right: 15,
     top: 15,
   },
-  forgotPassword: {
-    alignSelf: 'flex-end',
-    marginBottom: 20,
-  },
-  forgotPasswordText: {
-    color: '#6c63ff',
-  },
   loginButton: {
     backgroundColor: '#6c63ff',
     borderRadius: 8,

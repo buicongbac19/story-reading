@@ -116,36 +116,3 @@ export default function App() {
     </MenuProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  drawerContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  drawerHeader: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-    backgroundColor: '#e3f2fd',
-  },
-  drawerHeaderText: {
-    fontSize: 18,
-    fontWeight: '500',
-  },
-  drawerContent: {
-    flex: 1,
-    paddingTop: 10,
-  },
-  drawerItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
-  drawerIcon: {
-    marginRight: 16,
-  },
-  drawerItemText: {
-    fontSize: 16,
-  },
-});

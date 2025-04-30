@@ -11,13 +11,10 @@ import {
   Alert,
   StatusBar,
   SafeAreaView,
-  Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { booksData } from './HomeScreen';
-
-const { height } = Dimensions.get('window');
 
 export default function BookDetailScreen() {
   const navigation = useNavigation();
